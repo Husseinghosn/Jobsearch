@@ -1,0 +1,3 @@
+# Fork-local paths for husseinghosn/Jobsearch — upstream never ships these,
+# and `npm run update` never writes to them. See config/local-paths.example.txt.
+automation/

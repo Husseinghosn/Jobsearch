@@ -1,0 +1,38 @@
+# automation/seed/portals-filters.yml — filters to merge into your portals.yml (setup step 8).
+#
+# These run inside scan.mjs at ZERO token cost. They are the main volume control: every
+# posting they drop is one the daily run never pays to rank or evaluate. Tight filters
+# here beat raising any cap later.
+#
+# How to use: open your portals.yml (in your data root), find each key below (most are
+# commented out in the template) and set it to these values. Edit every line marked EDIT.
+# Key reference: templates/portals.example.yml.
+
+# Apply-early: only postings from the last week. daily.ps1 also passes --since 7.
+max_posting_age_days: 7
+
+# Skip internships and entry-level titles. EDIT: remove `entry` if you want junior roles.
+skip_tiers: [intern, entry]
+
+# EDIT: your region. always_allow is checked before block — keep it to your home region.
+location_filter:
+  always_allow:
+    - "United States"
+  allow:
+    - "Remote"
+
+# EDIT: your walk-away base salary. Postings with no salary are kept (not penalized).
+salary_filter:
+  min: 120000
+  currency: "USD"
+
+# Label postings that ask for more years than you have (+1 stretch), instead of dropping
+# them — the ranker and evaluator see the label. Uses candidate.years_of_experience from
+# config/profile.yml. Switch action to `drop` once you trust it.
+experience_filter:
+  enabled: true
+  stretch_years: 1
+  action: label
+
+# title_filter: onboarding writes positive/negative keywords from your target roles.
+# Review them: a title variant your list doesn't literally contain is dropped silently.

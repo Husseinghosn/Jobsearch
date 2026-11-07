@@ -1,0 +1,7 @@
+# Personal data — never commit
+profile/*
+!profile/*.example.*
+data/*
+!data/.gitkeep
+__pycache__/
+.DS_Store
